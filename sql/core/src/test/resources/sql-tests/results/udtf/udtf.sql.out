@@ -136,6 +136,16 @@ struct<count:int,total:int,last:int>
 
 
 -- !query
+SELECT * FROM UDTFLastString(
+  TABLE(VALUES ('def'), ('abc') t(input))
+  WITH SINGLE PARTITION ORDER BY input)
+-- !query schema
+struct<last:string>
+-- !query output
+def
+
+
+-- !query
 SELECT * FROM UDTFWithSinglePartition(TABLE(t2))
 -- !query schema
 struct<count:int,total:int,last:int>

@@ -24,7 +24,9 @@ SELECT * FROM udtf(cast(rand(0) AS int) + 1, 1);
 SELECT * FROM UDTFCountSumLast(TABLE(t2) WITH SINGLE PARTITION);
 SELECT * FROM UDTFCountSumLast(TABLE(t2) PARTITION BY partition_col ORDER BY input);
 SELECT * FROM UDTFCountSumLast(TABLE(t2) PARTITION BY partition_col ORDER BY input DESC);
-
+SELECT * FROM UDTFLastString(
+  TABLE(VALUES ('def'), ('abc') t(input))
+  WITH SINGLE PARTITION ORDER BY input);
 -- test UDTF calls that take input TABLE arguments and the 'analyze' method returns required
 -- partitioning and/or ordering properties for Catalyst to enforce for the input table
 SELECT * FROM UDTFWithSinglePartition(TABLE(t2));

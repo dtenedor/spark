@@ -100,6 +100,14 @@ SELECT * FROM UDTFCountSumLast(TABLE(t2) PARTITION BY partition_col ORDER BY inp
 
 
 -- !query
+SELECT * FROM UDTFLastString(
+  TABLE(VALUES ('def'), ('abc') t(input))
+  WITH SINGLE PARTITION ORDER BY input)
+-- !query analysis
+[Analyzer test output redacted due to nondeterminism]
+
+
+-- !query
 SELECT * FROM UDTFWithSinglePartition(TABLE(t2))
 -- !query analysis
 [Analyzer test output redacted due to nondeterminism]

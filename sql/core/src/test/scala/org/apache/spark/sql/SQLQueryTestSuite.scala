@@ -646,6 +646,7 @@ class SQLQueryTestSuite extends QueryTest with SharedSparkSession with SQLHelper
         val udtfs = Seq(
           TestPythonUDTF("udtf"),
           TestPythonUDTFCountSumLast,
+          TestPythonUDTFLastString,
           TestPythonUDTFWithSinglePartition,
           TestPythonUDTFPartitionBy,
           TestPythonUDTFInvalidPartitionByAndWithSinglePartition,
