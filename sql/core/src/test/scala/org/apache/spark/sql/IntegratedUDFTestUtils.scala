@@ -875,8 +875,9 @@ object IntegratedUDFTestUtils extends SQLHelper {
   /**
    * Register UDTFs used in the test cases.
    */
-  def registerTestUDTFs(testUDTFs: Seq[TestUDTF], session: SparkSession): Unit = {
-    testUDTFs.foreach {
+  case class TestUDTFSet(udtfs: Seq[TestUDTF])
+  def registerTestUDTFs(testUDTFSet: TestUDTFSet, session: SparkSession): Unit = {
+    testUDTFSet.udtfs.foreach {
       _ match {
         case udtf: TestUDTF => session.udtf.registerPython(udtf.name, udtf.udtf)
         case other => throw new RuntimeException(s"Unknown UDTF class [${other.getClass}]")
